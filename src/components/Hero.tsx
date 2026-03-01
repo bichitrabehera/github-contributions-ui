@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { GithubActivity } from "github-contributions-ui";
-
 const themes = ["light", "dark", "blue", "purple"];
 
 const Hero = () => {
