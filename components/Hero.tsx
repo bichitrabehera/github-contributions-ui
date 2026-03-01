@@ -14,7 +14,7 @@ const Hero = () => {
 
   return (
     <section className="w-full bg-black h-screen text-white flex-1">
-      <div className="max-w-3xl mx-auto px-6 md:px-0 py-20 w-full">
+      <div className="max-w-3xl mx-auto px-6 md:px-0 py-10 w-full">
         <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight text-green-600">
           GitHub Contributions UI
         </h1>
@@ -35,17 +35,18 @@ const Hero = () => {
                        text-white placeholder-gray-500 
                        px-4 py-3 
                        focus:outline-none focus:ring-2 
-                       focus:ring-green-600 transition"
+                       focus:ring-green-600 transition
+                       rounded-lg
+                       "
           />
         </div>
 
-        {/* Theme Selector */}
         <div className="mt-6 flex flex-wrap gap-3">
           {themes.map((t) => (
             <button
               key={t}
               onClick={() => setTheme(t as any)}
-              className={`px-4 py-1 capitalize transition ${
+              className={`px-4 py-1 capitalize rounded-2xl transition ${
                 theme === t
                   ? "bg-green-600 text-white"
                   : "bg-neutral-800 text-gray-400"
@@ -55,9 +56,7 @@ const Hero = () => {
             </button>
           ))}
         </div>
-
-        {/* Activity */}
-        <div className="mt-12 overflow-x-auto flex flex-col">
+        <div className="mt-10">
           <GithubActivity username={name} theme={theme} />
         </div>
 
