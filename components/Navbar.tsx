@@ -1,14 +1,13 @@
-import React from "react";
+"use client";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <nav className="w-full bg-black border-b border-white/10">
+    <nav className="w-full bg-black font-mono border-b border-white/10">
       <div className="max-w-3xl mx-auto px-6 md:px-0 py-4 flex items-center justify-between">
-        
-        <h1 className="text-sm md:text-base font-medium text-white tracking-tight">
-          github-contributions-ui
+        <h1 className="text-sm md:text-base font-mono font-medium text-white tracking-tight">
+          GitHub Contributions UI
         </h1>
 
         <Link
@@ -18,7 +17,6 @@ const Navbar = () => {
         >
           <FaGithub size={20} />
         </Link>
-
       </div>
     </nav>
   );
