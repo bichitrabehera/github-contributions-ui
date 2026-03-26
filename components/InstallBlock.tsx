@@ -9,27 +9,25 @@ function InstallBlock() {
   const handleCopy = async () => {
     await navigator.clipboard.writeText(command);
     setCopied(true);
-
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="mt-10 text-sm text-gray-500">
-      <p className="mb-2">Install with</p>
-
-      <div className="flex items-center justify-between bg-neutral-900 border border-neutral-800 rounded-lg px-2 py-2">
-        <code className="text-gray-300 font-mono text-sm">
+    <div className="flex items-center gap-3">
+      <div className="flex-1 flex items-center bg-gradient-to-r from-gray-900/50 to-green-950/20 border border-green-900/30 rounded-lg overflow-hidden">
+        <code className="text-gray-300 font-mono text-sm px-4 py-3 flex-1 overflow-x-auto">
           {command}
         </code>
 
         <button
           onClick={handleCopy}
-          className="ml-4 p-2 rounded-md hover:bg-neutral-800 transition"
+          className="p-3 hover:bg-green-950/30 transition-colors duration-200 text-gray-400 hover:text-green-400"
+          title="Copy to clipboard"
         >
           {copied ? (
-            <FiCheck className="text-green-500" size={16} />
+            <FiCheck className="text-green-500" size={18} />
           ) : (
-            <FiCopy className="text-gray-400" size={16} />
+            <FiCopy size={18} />
           )}
         </button>
       </div>

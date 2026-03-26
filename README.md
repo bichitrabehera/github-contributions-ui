@@ -44,4 +44,4 @@ No API keys. No config. No installs. Just your GitHub username.
 
 ## 📄 License
 
-MIT License © 2026 Bichitra Behera
+MIT © 2026 Bichitra Behera

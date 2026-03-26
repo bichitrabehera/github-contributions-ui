@@ -15,7 +15,7 @@ type NpmDownloadResponse = {
 
 const Hero = () => {
   const [name, setName] = useState("bichitrabehera");
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [downloads, setDownloads] = useState<number | null>(null);
 
   useEffect(() => {
@@ -44,80 +44,101 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="w-full font-mono bg-black text-white flex-1">
-      <div className="max-w-3xl mx-auto px-6 md:px-0 pb-20 pt-14">
-         <h1 className="text-green-500 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
-          Display your GitHub contributions anywhere
-        </h1>
+    <section className="w-full bg-black text-[#c9d1d9] py-20">
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Header Section */}
+        <div className="mb-16">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30">
+            <span className="text-xs font-medium text-green-400">
+              ✨ Zero-dependency React component
+            </span>
+          </div>
 
-        <p className="mt-5 text-sm md:text-lg text-gray-400 max-w-2xl">
-          A plug-and-play React component that renders a GitHub-style
-          contribution heatmap. Lightweight, customizable, and built for
-          portfolios, dashboards, and developer websites.
-        </p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-white mb-6">
+            Display Your GitHub<br className="hidden sm:block" />
+            Contributions Anywhere
+          </h1>
 
-        <div className="mt-10 text-sm text-gray-500">
+          <p className="text-lg text-gray-400 max-w-2xl leading-relaxed mb-8">
+            A lightweight, plug-and-play React component that renders a GitHub-style
+            contribution calendar. Perfect for portfolios, dashboards, and developer
+            websites. No third-party dependencies. Just React + TypeScript + Tailwind.
+          </p>
+
+          {/* Stats */}
+          <div className="flex flex-col sm:flex-row gap-6 mb-8">
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold text-white">
+                {typeof downloads === "number"
+                  ? (downloads)
+                  : "—"}
+                
+              </div>
+              <div className="text-sm text-gray-400">
+                Downloads/week
+              </div>
+            </div>
+            <div className="w-px bg-gray-700"></div>
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold text-white">4</div>
+              <div className="text-sm text-gray-400">
+                Theme Options
+              </div>
+            </div>
+          </div>
+
           <InstallBlock />
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
-            Weekly npm downloads:{" "}
-            <span className="text-white font-medium">
-              {typeof downloads === "number"
-                ? downloads.toLocaleString()
-                : "Loading..."}
-            </span>
-          </p>
+        {/* Interactive Demo */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <label className="text-sm font-medium text-gray-300 mb-3 block">
+              Test with any GitHub username
+            </label>
 
-          <Link
-            href="https://github.com/bichitrabehera/github-contributions-ui#readme"
-            target="_blank"
-            className="text-gray-400 border border-white/40 rounded-full px-4 py-2 hover:text-white transition text-sm"
-          >
-            View on GitHub →
-          </Link>
-        </div>
+            <input
+              autoFocus
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. octocat"
+              className="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-transparent transition-all duration-200"
+            />
 
-        <div className="mt-12 max-w-md">
-          <label className="text-sm text-gray-400 mb-2 block">
-            Try it live
-          </label>
+            {/* Theme Selector */}
+            <div className="mt-6">
+              <label className="text-sm font-medium text-gray-300 mb-3 block">
+                Choose theme
+              </label>
+              <div className="grid grid-cols-4 gap-2">
+                {themes.map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => setTheme(t)}
+                    className={`px-3 py-2 capitalize rounded-lg transition-all duration-200 text-sm font-medium ${
+                      theme === t
+                        ? "bg-green-600 text-white shadow-lg shadow-green-600/20"
+                        : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          <input
-            autoFocus
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter GitHub username (e.g. octocat)"
-            className="w-full bg-neutral-900 border border-white/10
-                       text-white placeholder-gray-500
-                       px-4 py-3 rounded-lg
-                       focus:outline-none focus:ring-2
-                       focus:ring-green-600 transition"
-          />
-        </div>
+            <div className="mt-6 p-4 bg-green-500/5 border border-green-500/20 rounded-lg">
+              <p className="text-sm text-green-300">
+                 <span className="text-gray-400">Currently showing contributions for</span> <span className="font-medium text-white">{name}</span>
+              </p>
+            </div>
+          </div>
 
-        {/* Theme Selector */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          {themes.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTheme(t)}
-              className={`px-4 py-1 capitalize rounded-full transition ${
-                theme === t
-                  ? "bg-green-600 text-white"
-                  : "bg-neutral-800 text-gray-400 hover:bg-neutral-700"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-
-        {/* Preview */}
-        <div className="mt-12">
-          <GithubActivity username={name} theme={theme} />
+          {/* Preview */}
+          <div className="  overflow-x-auto">
+            <GithubActivity username={name} theme={theme} />
+          </div>
         </div>
       </div>
     </section>
